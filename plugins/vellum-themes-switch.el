@@ -22,27 +22,30 @@ Each entry is of the form (variant-name (theme1 theme2 ...))."
     ,@(cl-loop for (name themes) in variants
 	       collect `(cons ',name (make-themes-view ',themes)))))
 
-(setq vellum-themes-variants-alist
-      (vellum-expand-themes-alist
-       (dark
-	(doom-sourcerer
-	 doom-lantern
-	 doom-moonlight
-	 doom-city-lights))
-       (light
-	(doom-gruvbox-light
-	 doom-feather-light
-	 doom-one-light))
-       (modus-dark
-	(modus-vivendi
-	 modus-vivendi-tinted
-	 modus-vivendi-tritanopia
-	 modus-vivendi-deuteranopia))
-       (modus-light
-	(modus-operandi
-	 modus-operandi-tinted
-	 modus-operandi-tritanopia
-	 modus-operandi-deuteranopia))))
+(defmacro vellum-use-themes (&rest themes-spec)
+  `(setq vellum-themes-variants-alist
+	 (vellum-expand-themes-alist ,@themes-spec)))
+
+(vellum-use-themes
+ (dark
+  (doom-sourcerer
+   doom-lantern
+   doom-moonlight
+   doom-city-lights))
+ (light
+  (doom-gruvbox-light
+   doom-feather-light
+   doom-one-light))
+ (modus-dark
+  (modus-vivendi
+   modus-vivendi-tinted
+   modus-vivendi-tritanopia
+   modus-vivendi-deuteranopia))
+ (modus-light
+  (modus-operandi
+   modus-operandi-tinted
+   modus-operandi-tritanopia
+   modus-operandi-deuteranopia)))
 
 (setq vellum-current-theme-variant
       (car (car vellum-themes-variants-alist)))
@@ -53,6 +56,7 @@ Each entry is of the form (variant-name (theme1 theme2 ...))."
    (list (intern (completing-read "Load theme: " (custom-available-themes)))))
   (mapc #'disable-theme custom-enabled-themes)
   (load-theme theme t))
+
 (defun vellum-get-selected-theme-variant-alist-entry ()
   (assoc
    vellum-current-theme-variant
