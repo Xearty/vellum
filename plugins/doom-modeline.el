@@ -1,5 +1,6 @@
 (use-package doom-modeline
   :init
+  (setq doom-modeline-buffer-file-name-style 'relative-from-project)
   (setq doom-modeline-hud t)
   (setq doom-modeline-buffer-modification-icon nil)
   ;; (setq doom-modeline-position-line-format nil)
