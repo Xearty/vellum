@@ -58,30 +58,26 @@ Each entry should be:
   `(setq vellum-themes-variants-alist
 	 (vellum-expand-themes-alist ,@theme-entries)))
 
-
-(setq dark-themes
-      '(doom-sourcerer
-	doom-lantern
-	doom-moonlight
-	doom-city-lights))
-
 (vellum-use-themes
- (dark dark-themes)
+ (dark
+  '(doom-sourcerer
+    doom-lantern
+    doom-moonlight
+    doom-city-lights))
  (light
   '(doom-gruvbox-light
     doom-feather-light
     doom-one-light))
  (modus-dark
-  (list 'modus-vivendi
-	'modus-vivendi-tinted
-	'modus-vivendi-tritanopia
-	'modus-vivendi-deuteranopia))
+  '(modus-vivendi
+    modus-vivendi-tinted
+    modus-vivendi-tritanopia
+    modus-vivendi-deuteranopia))
  (modus-light
-  (append '(
-	    modus-operandi
-	    modus-operandi-tinted)
-	  '(modus-operandi-tritanopia
-	    modus-operandi-deuteranopia))))
+  '(modus-operandi
+    modus-operandi-tinted
+    modus-operandi-tritanopia
+    modus-operandi-deuteranopia)))
 
 (setq vellum-current-theme-variant
       (car (car vellum-themes-variants-alist)))
