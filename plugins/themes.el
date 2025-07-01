@@ -5,3 +5,4 @@
 
 
 (use-package doom-themes)
+(use-package vscode-dark-plus-theme)
