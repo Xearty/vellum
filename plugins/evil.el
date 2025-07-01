@@ -2,7 +2,8 @@
   :init
   (setq evil-want-C-u-delete t
 	evil-want-C-u-scroll t
-	evil-want-Y-yank-to-eol t)
+	evil-want-Y-yank-to-eol t
+	evil-want-C-h-delete t)
   (setq evil-want-integration t  ;; These are needed for evil-collection
         evil-want-keybinding nil)
 
@@ -17,8 +18,6 @@
 
   ;; magit
   (add-hook 'git-commit-mode-hook 'evil-insert-state)
-
-  (define-key evil-insert-state-map (kbd "C-h") 'backward-delete-char)
 
   ;; commenting
   (evil-define-key 'normal prog-mode-map (kbd "g c c") #'comment-line)
