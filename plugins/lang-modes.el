@@ -6,3 +6,8 @@
   :straight (:type built-in)
   :defer t
   :mode "\\.tsx?\\'")
+
+(use-package nix-ts-mode
+  :mode "\\.nix\\'"
+  :config
+  (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-ts-mode)))
