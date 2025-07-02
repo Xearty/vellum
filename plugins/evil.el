@@ -23,6 +23,10 @@
   (evil-define-key 'normal prog-mode-map (kbd "g c c") #'comment-line)
   (evil-define-key 'visual prog-mode-map (kbd "g c") #'comment-or-uncomment-region)
 
+  ;; Use visual line motions even outside of visual-line-mode buffers
+  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+
   (evil-set-undo-system 'undo-tree)
   (evil-mode 1))
 
