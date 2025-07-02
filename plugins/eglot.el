@@ -5,7 +5,9 @@
 	eldoc-echo-area-use-multiline-p nil
 	eglot-put-doc-in-help-buffer 'eglot-doc-too-large-for-echo-area)
   (add-hook 'eglot-managed-mode-hook (lambda () (eglot-inlay-hints-mode -1))) 
-  :hook ((rust-mode rust-ts-mode) . eglot-ensure)
+  :hook (((rust-mode rust-ts-mode) . eglot-ensure)
+	 ((c-mode c-ts-mode) . eglot-ensure)
+	 ((c++-mode C++-ts-mode) . eglot-ensure))
   :bind ( :map rust-mode-map
 	  ("C-c l i h" . eglot-inlay-hints-mode)))
 
