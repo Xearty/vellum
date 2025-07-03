@@ -11,4 +11,5 @@
   :bind ( :map eglot-mode-map
 	  ("C-c l i h" . eglot-inlay-hints-mode)))
 
+(use-package flymake-popon)
 
