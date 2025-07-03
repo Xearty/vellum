@@ -13,8 +13,10 @@
 (setq visible-bell t)
 (setq ring-bell-function 'ignore)
 
-(setq scroll-step 1)
-(setq scroll-margin 6)
+;; Vimlike point out of screen behavior
+(setq scroll-step 1
+      scroll-margin 6
+      scroll-conservatively 99999)
 
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
