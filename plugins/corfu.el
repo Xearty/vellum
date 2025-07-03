@@ -1,31 +1,35 @@
 (use-package corfu
   :custom
-  (corfu-preview-current nil)    ;; Disable current candidate preview
+  (corfu-cycle t)                 ; Allows cycling through candidates
+  (corfu-auto t)                  ; Enable auto completion
+  (corfu-auto-prefix 2)           ; Minimum length of prefix for completion
+  (corfu-auto-delay 0)            ; No delay for completion
+  (corfu-popupinfo-delay '(0.5 . 0.2))  ; Automatically update info popup after that numver of seconds
+  (corfu-preview-current 'insert) ; insert previewed candidate
+  (corfu-preselect 'prompt)
+  (corfu-on-exact-match nil)      ; Don't auto expand tempel snippets
 
-  ;; Enable Corfu only for certain modes. See also `global-corfu-modes'.
-  :hook ((prog-mode . corfu-mode)
-         (shell-mode . corfu-mode)
-         (eshell-mode . corfu-mode))
+  :bind (:map corfu-map
+	      ("M-SPC"      . corfu-insert-separator)
+	      ("TAB"        . corfu-next)
+	      ([tab]        . corfu-next)
+	      ("S-TAB"      . corfu-previous)
+	      ([backtab]    . corfu-previous)
+	      ("S-<return>" . corfu-insert)
+	      ("M-h"        . corfu-info-documentation)
+	      ("M-n"        . corfu-popupinfo-scroll-up)
+	      ("M-p"        . corfu-popupinfo-scroll-down))
 
   :init
-
-  ;; Recommended: Enable Corfu globally.  Recommended since many modes provide
-  ;; Capfs and Dabbrev can be used globally (M-/).  See also the customization
-  ;; variable `global-corfu-modes' to exclude certain modes.
-  (setq corfu-auto t
-	corfu-auto-delay 0.25
-	corfu-auto-prefix 3)
-
   (global-corfu-mode)
-
-  ;; Enable optional extension modes:
-  ;; (corfu-history-mode)
-  ;; (corfu-popupinfo-mode)
+  (corfu-history-mode)
+  (corfu-popupinfo-mode) ; Popup completion info
   :config
   (keymap-set corfu-map "<remap> <keyboard-escape-quit>" nil))
 
 ;; A few more useful configurations...
 (use-package emacs
+  :disabled
   :straight (:type built-in)
   :custom
   ;; Enable indentation+completion using the TAB key.
