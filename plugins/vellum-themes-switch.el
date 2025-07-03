@@ -58,6 +58,12 @@ Each entry should be:
   `(setq vellum-themes-variants-alist
 	 (vellum-expand-themes-alist ,@theme-entries)))
 
+(defmacro vellum-with-eval-if-themes (&rest body)
+  "Safety wrapper around interactive commands"
+  `(if (bound-and-true-p vellum-current-theme-variant)
+       ,@body
+     (message "vellum-themes: There are no themes set.")))
+
 (vellum-use-themes
  (dark
   '(doom-sourcerer
@@ -109,35 +115,37 @@ by `vellum-themes-variants-alist`. Current variant is defined
 in `vellum-current-theme-variant`. The next theme is set by
 calling `vellum-clean-load-theme`"
   (interactive)
-  (let* ((current-variant-themes-view (vellum-get-selected-variant-themes-view))
-	 (index (themes-view-get-index current-variant-themes-view))
-	 (themes (themes-view-get-themes current-variant-themes-view))
-	 (next-index (% (+ index 1)
-			(length themes)))
-	 (next-theme (nth next-index themes)))
-    (vellum-clean-load-theme next-theme)
-    (oset current-variant-themes-view index next-index)))
+  (vellum-with-eval-if-themes
+   (let* ((view (vellum-get-selected-variant-themes-view))
+	  (index (themes-view-get-index view))
+	  (themes (themes-view-get-themes view))
+	  (next-index (% (+ index 1)
+			 (length themes)))
+	  (next-theme (nth next-index themes)))
+     (vellum-clean-load-theme next-theme)
+     (oset view index next-index)
+     (message "Theme changed to %s." next-theme))))
 
-(defun vellum-change-theme-variant (variant)
-  (interactive (list
-		(intern (completing-read
-			 "Select theme variant: "
-			 (mapcar 'car vellum-themes-variants-alist)))))
-  (setq vellum-current-theme-variant variant)
-  (vellum-refresh-theme))
+(defun vellum-change-theme-variant ()
+  (interactive)
+  (vellum-with-eval-if-themes
+   (let ((variant (intern (completing-read
+			   "Select theme variant: "
+			   (mapcar 'car vellum-themes-variants-alist)))))
+     (setq vellum-current-theme-variant variant)
+     (vellum-refresh-theme)
+     (message "Theme variant changed to %s." variant))))
 
-(defun vellum-change-theme (themes-view theme)
-  (interactive
-   (let ((view (vellum-get-selected-variant-themes-view)))
-     (list
-      view
-      (intern
-       (completing-read "Select theme: "
-			(themes-view-get-themes view))))))
-  (let* ((themes (themes-view-get-themes themes-view))
-	 (theme-index (cl-position theme themes)))
-    (oset themes-view index theme-index)
-    (vellum-refresh-theme)))
+(defun vellum-change-theme ()
+  (interactive)
+  (vellum-with-eval-if-themes
+   (let* ((view (vellum-get-selected-variant-themes-view))
+	  (themes (themes-view-get-themes view))
+	  (theme (intern (completing-read "Select theme: " themes)))
+	  (theme-index (cl-position theme themes)))
+     (oset view index theme-index)
+     (vellum-refresh-theme)
+     (message "Theme changed to %s." theme))))
 
 (defun vellum-refresh-theme ()
   (let ((selected-theme (vellum-get-selected-theme)))
@@ -147,4 +155,5 @@ calling `vellum-clean-load-theme`"
 (keymap-global-set "C-c t v" #'vellum-change-theme-variant) ;; Change theme variant
 (keymap-global-set "C-c t s" #'vellum-change-theme) ;; Change theme
 
-(vellum-refresh-theme)
+(vellum-with-eval-if-themes
+ (vellum-refresh-theme))
