@@ -11,7 +11,9 @@
   :bind ( :map eglot-mode-map
 	  ("C-c l i h" . eglot-inlay-hints-mode)
 	  ("C-c d d" . flymake-show-buffer-diagnostics)
-	  ("C-c d D" . flymake-show-project-diagnostics)))
+	  ("C-c d D" . flymake-show-project-diagnostics)
+	  ("C-c C-a" . eglot-code-actions)
+	  ("C-c C-S-a" . eglot-code-action-quickfix)))
 
 (use-package flymake-popon)
 
