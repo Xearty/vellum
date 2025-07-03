@@ -8,7 +8,7 @@
   :hook (((rust-mode rust-ts-mode) . eglot-ensure)
 	 ((c-mode c-ts-mode) . eglot-ensure)
 	 ((c++-mode C++-ts-mode) . eglot-ensure))
-  :bind ( :map rust-mode-map
+  :bind ( :map eglot-mode-map
 	  ("C-c l i h" . eglot-inlay-hints-mode)))
 
 
