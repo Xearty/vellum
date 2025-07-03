@@ -6,10 +6,6 @@
 	evil-want-C-h-delete t)
   (setq evil-want-integration t  ;; These are needed for evil-collection
         evil-want-keybinding nil)
-
-  ;; dired keybindings
-  :bind (:map evil-normal-state-map
-	      ("-" . dired-jump))
   :config
   ;; dired keybindings
   (evil-define-key 'normal dired-mode-map (kbd "h") 'dired-jump)
