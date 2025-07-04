@@ -12,3 +12,4 @@
 (setq settings-file (concat user-emacs-directory "lisp/settings/init.el"))
 (load-file settings-file)
 
+(require 'packages/vellum-themes-switch)

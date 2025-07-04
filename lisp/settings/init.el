@@ -1,4 +1,4 @@
 (let ((current-dir (file-name-directory load-file-name))
-      (modules '("ui.el" "general.el" "keymaps.el")))
+      (modules '("ui.el" "general.el" "keymaps.el" "themes.el")))
   (dolist (module modules) (load-file (concat current-dir module))))
       

@@ -1,1 +1,0 @@
-(message "Directory plugin loaded")

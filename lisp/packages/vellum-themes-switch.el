@@ -55,40 +55,16 @@ Each entry should be:
   (name '(theme1 theme2 ...))          ; quoted literal
   (name some-symbol)                   ; dereferenced at runtime
   (name (some runtime form))           ; evaluated at runtime"
-  `(setq vellum-themes-variants-alist
-	 (vellum-expand-themes-alist ,@theme-entries)))
+  `(progn
+     (setq vellum-themes-variants-alist(vellum-expand-themes-alist ,@theme-entries)
+	   vellum-current-theme-variant (car (car vellum-themes-variants-alist)))
+     (vellum-with-eval-if-themes (vellum-refresh-theme))))
 
 (defmacro vellum-with-eval-if-themes (&rest body)
   "Safety wrapper around interactive commands"
   `(if (bound-and-true-p vellum-current-theme-variant)
        ,@body
      (message "vellum-themes: There are no themes set.")))
-
-(vellum-use-themes
- (dark
-  '(doom-one
-    wheatgrass
-    doom-sourcerer
-    doom-lantern
-    doom-moonlight
-    doom-city-lights))
- (light
-  '(doom-gruvbox-light
-    doom-feather-light
-    doom-one-light))
- (modus-dark
-  '(modus-vivendi
-    modus-vivendi-tinted
-    modus-vivendi-tritanopia
-    modus-vivendi-deuteranopia))
- (modus-light
-  '(modus-operandi
-    modus-operandi-tinted
-    modus-operandi-tritanopia
-    modus-operandi-deuteranopia)))
-
-(setq vellum-current-theme-variant
-      (car (car vellum-themes-variants-alist)))
 
 (defun vellum-clean-load-theme (theme)
   "Disable all other themes and then load THEME."
@@ -157,5 +133,4 @@ calling `vellum-clean-load-theme`"
 (keymap-global-set "C-c t v" #'vellum-change-theme-variant) ;; Change theme variant
 (keymap-global-set "C-c t s" #'vellum-change-theme) ;; Change theme
 
-(vellum-with-eval-if-themes
- (vellum-refresh-theme))
+(provide 'packages/vellum-themes-switch)
