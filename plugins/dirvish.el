@@ -9,3 +9,9 @@
     (define-key dirvish-mode-map [remap evil-window-delete] 'dirvish-quit)
     (define-key dired-mode-map [remap evil-search-backward] 'dired-summary))
   (dirvish-override-dired-mode))
+
+(use-package dired
+  :straight nil
+  :config
+  (setq dired-listing-switches
+	"-AGFhlv --group-directories-first --time-style=long-iso"))
