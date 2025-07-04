@@ -66,7 +66,9 @@ Each entry should be:
 
 (vellum-use-themes
  (dark
-  '(doom-sourcerer
+  '(doom-one
+    wheatgrass
+    doom-sourcerer
     doom-lantern
     doom-moonlight
     doom-city-lights))
