@@ -34,10 +34,12 @@
 
   :bind ( :map eglot-mode-map
 	  ("C-c l i h" . eglot-inlay-hints-mode)
-	  ("C-c d d" . flymake-show-buffer-diagnostics)
-	  ("C-c d D" . flymake-show-project-diagnostics)
-	  ("C-c C-a" . eglot-code-actions)
-	  ("C-c C-S-a" . eglot-code-action-quickfix)))
+	  ("C-c d d"   . flymake-show-buffer-diagnostics)
+	  ("C-c d D"   . flymake-show-project-diagnostics)
+	  ("C-c C-a"   . eglot-code-actions)
+	  ("C-c C-S-a" . eglot-code-action-quickfix)
+	  ("C-c l c f" . eglot-format)
+	  ("C-c l r"   . eglot-rename)
+	  ("C-c l c o" . eglot-code-actions-organize-imports)))
 
 (use-package flymake-popon)
-
