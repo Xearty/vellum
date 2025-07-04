@@ -3,7 +3,9 @@
   :init
   (with-eval-after-load 'evil
     (evil-global-set-key 'motion (kbd "_") 'dirvish)
-    (evil-global-set-key 'motion (kbd "-") 'dirvish-dwim))
+    (evil-global-set-key 'motion (kbd "-") 'dirvish-dwim)
+    (evil-global-set-key 'motion (kbd "TAB") 'dirvish-subtree-toggle)
+    (evil-global-set-key 'motion (kbd "C-c e e") 'dirvish-side))
   :config
   (with-eval-after-load 'evil
     (define-key dirvish-mode-map [remap quit-window] 'dirvish-quit)
