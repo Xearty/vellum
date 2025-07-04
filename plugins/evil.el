@@ -23,6 +23,8 @@
   (evil-global-set-key 'motion "j" 'evil-next-visual-line)
   (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
 
+  (define-key evil-insert-state-map "\C-y" 'nil)
+
   (evil-set-undo-system 'undo-tree)
   (evil-mode 1))
 

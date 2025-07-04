@@ -6,3 +6,6 @@
   (startup-redirect-eln-cache
    (convert-standard-filename
     (expand-file-name  "var/eln-cache/" user-emacs-directory))))
+
+(setq read-process-output-max (* 4 1024 1024))
+(setq process-adaptive-read-buffering nil)

@@ -5,8 +5,8 @@
   (corfu-auto-prefix 2)           ; Minimum length of prefix for completion
   (corfu-auto-delay 0)            ; No delay for completion
   (corfu-popupinfo-delay '(0.5 . 0.2))  ; Automatically update info popup after that numver of seconds
-  (corfu-preview-current 'insert) ; insert previewed candidate
-  (corfu-preselect 'prompt)
+  (corfu-preview-current nil) ; insert previewed candidate
+  (corfu-preselect 'first)
   (corfu-on-exact-match nil)      ; Don't auto expand tempel snippets
 
   :bind (:map corfu-map
@@ -15,7 +15,7 @@
 	      ([tab]        . corfu-next)
 	      ("S-TAB"      . corfu-previous)
 	      ([backtab]    . corfu-previous)
-	      ("S-<return>" . corfu-insert)
+	      ("C-y"        . corfu-insert)
 	      ("M-h"        . corfu-info-documentation)
 	      ("M-n"        . corfu-popupinfo-scroll-up)
 	      ("M-p"        . corfu-popupinfo-scroll-down))
@@ -25,7 +25,8 @@
   (corfu-history-mode)
   (corfu-popupinfo-mode) ; Popup completion info
   :config
-  (keymap-set corfu-map "<remap> <keyboard-escape-quit>" nil))
+  (keymap-set corfu-map "<remap> <keyboard-escape-quit>" nil)
+  (define-key corfu-map (kbd "RET") nil))
 
 ;; A few more useful configurations...
 (use-package emacs
