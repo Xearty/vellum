@@ -13,3 +13,4 @@
 (load-file settings-file)
 
 (require 'packages/vellum-themes-switch)
+(require 'packages/builtins/smerge)
