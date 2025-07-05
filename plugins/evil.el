@@ -47,6 +47,13 @@
   :config
   (global-evil-surround-mode 1))
 
+(use-package evil-goggles
+  :config
+  (setq evil-goggles-blocking-duration 0.05
+	evil-goggles-async-duration 0.1)
+  (evil-goggles-mode)
+  (evil-goggles-use-diff-faces))
+
 (defun vellum--with-underscore-as-word (original-function &rest args)
   (let ((table (copy-syntax-table (syntax-table))))
     (modify-syntax-entry ?_ "w" table)
