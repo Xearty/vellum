@@ -1,6 +1,8 @@
 (use-package eglot
   :straight nil
 
+  :after consult
+
   :custom
   (eglot-report-progress `messages)
   (eglot-send-changes-idle-time 0)
@@ -36,6 +38,7 @@
 	  ("C-c l i h" . eglot-inlay-hints-mode)
 	  ("C-c d d"   . flymake-show-buffer-diagnostics)
 	  ("C-c d D"   . flymake-show-project-diagnostics)
+	  ("C-c D D"   . consult-flymake)
 	  ("C-c C-a"   . eglot-code-actions)
 	  ("C-c C-S-a" . eglot-code-action-quickfix)
 	  ("C-c l c f" . eglot-format)
