@@ -11,6 +11,7 @@
 (vellum-use-themes
  (dark
   '(doom-one
+    doom-pine
     wheatgrass
     doom-sourcerer
     doom-lantern
