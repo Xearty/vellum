@@ -7,6 +7,8 @@
   (setq evil-want-integration t  ;; These are needed for evil-collection
         evil-want-keybinding nil)
   :config
+  (define-key evil-motion-state-map (kbd "C-i") 'evil-jump-forward)
+
   ;; dired keybindings
   (evil-define-key 'normal dired-mode-map (kbd "h") 'dired-jump)
   (evil-define-key 'normal dired-mode-map (kbd "l") 'dired-find-file)
