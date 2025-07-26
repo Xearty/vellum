@@ -10,7 +10,9 @@
 
 (vellum-use-themes
  (dark
-  '(doom-one
+  '(doom-horizon
+    doom-one
+    doom-badger
     doom-pine
     wheatgrass
     doom-sourcerer
