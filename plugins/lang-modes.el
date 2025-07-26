@@ -13,3 +13,5 @@
   (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-ts-mode)))
 
 (use-package solidity-mode)
+
+(use-package zig-mode)
