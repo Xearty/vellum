@@ -6,7 +6,7 @@
 ;; Maximize on startup
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)
 
-(set-face-attribute 'default nil :family "JetBrains Mono" :height 160)
+(set-face-attribute 'default nil :family "JetBrains Mono" :height 150)
 
 (setq use-dialog-box nil)
 
