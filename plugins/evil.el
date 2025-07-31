@@ -47,7 +47,7 @@
 
 (use-package evil-goggles
   :config
-  (setq evil-goggles-blocking-duration 0.05
+  (setq evil-goggles-blocking-duration 0
 	evil-goggles-async-duration 0.1)
   (evil-goggles-mode)
   (evil-goggles-use-diff-faces))
