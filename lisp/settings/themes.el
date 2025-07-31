@@ -6,11 +6,14 @@
 (use-package doom-themes)
 (use-package vscode-dark-plus-theme)
 
+(setq custom-theme-directory (expand-file-name "lisp/packages/third_party/themes" user-emacs-directory))
+
 (require 'packages/vellum-themes-switch)
 
 (vellum-use-themes
  (dark
-  '(doom-horizon
+  '(fleury
+    doom-horizon
     doom-one
     doom-badger
     doom-pine
