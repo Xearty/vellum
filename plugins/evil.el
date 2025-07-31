@@ -17,10 +17,6 @@
   ;; magit
   (add-hook 'git-commit-mode-hook 'evil-insert-state)
 
-  ;; commenting
-  (evil-define-key 'normal prog-mode-map (kbd "g c c") #'comment-line)
-  (evil-define-key 'visual prog-mode-map (kbd "g c") #'comment-or-uncomment-region)
-
   ;; Use visual line motions even outside of visual-line-mode buffers
   (evil-global-set-key 'motion "j" 'evil-next-visual-line)
   (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
@@ -55,6 +51,10 @@
 	evil-goggles-async-duration 0.1)
   (evil-goggles-mode)
   (evil-goggles-use-diff-faces))
+
+(use-package evil-commentary
+  :config
+  (evil-commentary-mode))
 
 (defun vellum--with-underscore-as-word (original-function &rest args)
   (let ((table (copy-syntax-table (syntax-table))))
