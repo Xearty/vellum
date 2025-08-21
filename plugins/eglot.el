@@ -31,8 +31,9 @@
   (add-hook 'eglot-managed-mode-hook (lambda () (eglot-inlay-hints-mode -1))) 
 
   :hook (((rust-mode rust-ts-mode) . eglot-ensure)
-	 ((c-mode c-ts-mode) . eglot-ensure)
-	 ((c++-mode C++-ts-mode) . eglot-ensure))
+	 ;; ((c-mode c-ts-mode) . eglot-ensure)
+	 ;; ((c++-mode C++-ts-mode) . eglot-ensure)
+	 )
 
   :bind ( :map eglot-mode-map
 	  ("C-c l i h" . eglot-inlay-hints-mode)
